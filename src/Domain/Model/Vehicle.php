@@ -10,4 +10,14 @@ final class Vehicle
         private int $id
     ) {
     }
+
+    public function isEqualTo(Vehicle $vehicle): bool
+    {
+        return  $vehicle->getId() === $this->id;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }

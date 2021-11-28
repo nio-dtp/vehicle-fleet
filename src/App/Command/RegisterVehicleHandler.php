@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VehicleFleet\App\Command;
 
 use VehicleFleet\Domain\Exception\FleetNotFound;
+use VehicleFleet\Domain\Exception\VehicleAlreadyRegistered;
 use VehicleFleet\Domain\Repository\FleetRepositoryInterface;
 
 final class RegisterVehicleHandler
@@ -15,6 +16,7 @@ final class RegisterVehicleHandler
 
     /**
      * @throws FleetNotFound
+     * @throws VehicleAlreadyRegistered
      */
     public function handle(RegisterVehicle $registerVehicle): void
     {
