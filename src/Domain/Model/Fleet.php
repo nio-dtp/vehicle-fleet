@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VehicleFleet\Domain\Model;
 
 use VehicleFleet\Domain\Exception\VehicleAlreadyRegistered;
+use VehicleFleet\Domain\Exception\VehicleNotFound;
 
 final class Fleet
 {
@@ -23,21 +24,38 @@ final class Fleet
      */
     public function registerVehicle(int $vehicleId): void
     {
-        $vehicle = new Vehicle($vehicleId);
-        if ($this->hasVehicle($vehicle)) {
+        if ($this->hasVehicle($vehicleId)) {
             throw new VehicleAlreadyRegistered($this->id, $vehicleId);
         }
-        $this->vehicles[] = $vehicle;
+        $this->vehicles[] = new Vehicle($vehicleId);
     }
 
-    private function hasVehicle(Vehicle $vehicle): bool
+    /**
+     * @throws VehicleNotFound
+     */
+    public function parkVehicle(int $vehicleId, float $latitude, float $longitude, ?int $altitude): void
     {
+        $vehicle = $this->getVehicle($vehicleId);
+        if (null === $vehicle) {
+            throw new VehicleNotFound($this->id, $vehicleId);
+        }
+        $vehicle->park($latitude, $longitude, $altitude);
+    }
+
+    private function hasVehicle(int $vehicleId): bool
+    {
+        return null !== $this->getVehicle($vehicleId);
+    }
+
+    private function getVehicle(int $vehicleId): ?Vehicle
+    {
+        $vehicle = new Vehicle($vehicleId);
         foreach ($this->vehicles as $fleetVehicle) {
-            if ($vehicle->isEqualTo($fleetVehicle)) {
-                return true;
+            if ($fleetVehicle->isEqualTo($vehicle)) {
+                return $fleetVehicle;
             }
         }
 
-        return false;
+        return null;
     }
 }
