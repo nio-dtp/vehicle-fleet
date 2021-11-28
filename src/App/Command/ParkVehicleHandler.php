@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VehicleFleet\App\Command;
 
 use VehicleFleet\Domain\Exception\FleetNotFound;
+use VehicleFleet\Domain\Exception\VehicleAlreadyParked;
 use VehicleFleet\Domain\Exception\VehicleNotFound;
 use VehicleFleet\Domain\Repository\FleetRepositoryInterface;
 
@@ -17,6 +18,7 @@ final class ParkVehicleHandler
     /**
      * @throws FleetNotFound
      * @throws VehicleNotFound
+     * @throws VehicleAlreadyParked
      */
     public function handle(ParkVehicle $parkVehicle): void
     {

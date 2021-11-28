@@ -27,6 +27,11 @@ final class Vehicle
         return $vehicle->getId() === $this->id;
     }
 
+    public function isParkedAtThisLocation(float $latitude, float $longitude, ?int $altitude): bool
+    {
+        return $latitude === $this->latitude && $longitude === $this->longitude && $altitude === $this->altitude;
+    }
+
     public function getId(): int
     {
         return $this->id;

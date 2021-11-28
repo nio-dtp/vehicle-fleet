@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace VehicleFleet\Domain\Model;
 
+use VehicleFleet\Domain\Exception\VehicleAlreadyParked;
 use VehicleFleet\Domain\Exception\VehicleAlreadyRegistered;
 use VehicleFleet\Domain\Exception\VehicleNotFound;
 
@@ -32,12 +33,16 @@ final class Fleet
 
     /**
      * @throws VehicleNotFound
+     * @throws VehicleAlreadyParked
      */
     public function parkVehicle(int $vehicleId, float $latitude, float $longitude, ?int $altitude): void
     {
         $vehicle = $this->getVehicle($vehicleId);
         if (null === $vehicle) {
             throw new VehicleNotFound($this->id, $vehicleId);
+        }
+        if ($vehicle->isParkedAtThisLocation($latitude, $longitude, $altitude)) {
+            throw new VehicleAlreadyParked($vehicleId, $latitude, $longitude, $altitude);
         }
         $vehicle->park($latitude, $longitude, $altitude);
     }
