@@ -15,7 +15,7 @@ use VehicleFleet\Domain\Exception\VehicleAlreadyRegistered;
 
 final class RegisterVehicleCommand extends Command
 {
-    public function __construct(private RegisterVehicleHandler $registerVehicleHandler)
+    public function __construct(private RegisterVehicleHandler $parkVehicleHandler)
     {
         parent::__construct('vehicle-fleet:vehicle:register');
     }
@@ -33,7 +33,7 @@ final class RegisterVehicleCommand extends Command
     {
         try {
             $vehiclePlateNumber = $input->getArgument('vehiclePlateNumber');
-            $this->registerVehicleHandler->handle(
+            $this->parkVehicleHandler->handle(
                 new RegisterVehicle($input->getArgument('fleetId'), $vehiclePlateNumber)
             );
         } catch (FleetNotFound | VehicleAlreadyRegistered $exception) {

@@ -13,6 +13,10 @@ case $ACTION in
     docker-compose exec vf-php php bin/console vehicle-fleet:vehicle:register $2 $3
     ;;
 
+  localize-vehicle)
+    docker-compose exec vf-php php bin/console vehicle-fleet:vehicle:park $2 $3 $4 $5 ${6-}
+    ;;
+
   *)
     echo "Je ne sais pas quoi faire avec '$ACTION'"
     ;;
