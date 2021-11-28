@@ -1,10 +1,31 @@
 version: "3.9"
 services:
+    vf-database:
+        container_name: vf-database
+        image: mysql:8.0
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: vf
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
+        ports:
+            - '4306:3306'
+        volumes:
+            - ./var/mysql:/var/lib/mysql
     vf-php:
         container_name: vf-php
         build:
             context: ./docker/php
         ports:
             - '9000:9000'
+        volumes:
+            - .:/var/www
+        depends_on:
+            - vf-database
+    vf-qa:
+        container_name: vf-qa
+        image: jakzal/phpqa:php8.0
+        working_dir: /var/www
         volumes:
             - .:/var/www
