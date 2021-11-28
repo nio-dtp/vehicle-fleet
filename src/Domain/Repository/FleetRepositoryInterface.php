@@ -17,7 +17,7 @@ interface FleetRepositoryInterface
     /**
      * @throws FleetNotFound
      */
-    public function getById(int $id): Fleet;
+    public function getById(string $id): Fleet;
 
     public function save(Fleet $fleet): void;
 }

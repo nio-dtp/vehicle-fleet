@@ -6,7 +6,7 @@ namespace VehicleFleet\App\Command;
 
 final class RegisterVehicle
 {
-    public function __construct(public int $fleetId, public int $vehicleId)
+    public function __construct(public string $fleetId, public string $vehicleId)
     {
     }
 }

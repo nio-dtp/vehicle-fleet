@@ -6,8 +6,8 @@ namespace VehicleFleet\Domain\Exception;
 
 final class VehicleNotFound extends \DomainException
 {
-    public function __construct(int $fleetId, int $vehicleId)
+    public function __construct(string $fleetId, string $vehicleId)
     {
-        parent::__construct(sprintf('Le véhicule (id:%d) n‘est pas présent dans la flotte (id:%d)', $vehicleId, $fleetId));
+        parent::__construct(sprintf('Le véhicule (id:%s) n‘est pas présent dans la flotte (id:%s)', $vehicleId, $fleetId));
     }
 }

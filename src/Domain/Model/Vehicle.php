@@ -4,14 +4,21 @@ declare(strict_types=1);
 
 namespace VehicleFleet\Domain\Model;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/** @ORM\Entity */
 final class Vehicle
 {
+    /** @ORM\Column(type="float", nullable=true) */
     private ?float $latitude;
+    /** @ORM\Column(type="float", nullable=true) */
     private ?float $longitude;
+    /** @ORM\Column(type="integer", nullable=true) */
     private ?int $altitude;
 
     public function __construct(
-        private int $id
+        /** @ORM\Id @ORM\Column(type="string", length="15") */
+        private string $id
     ) {
     }
 
@@ -32,7 +39,7 @@ final class Vehicle
         return $latitude === $this->latitude && $longitude === $this->longitude && $altitude === $this->altitude;
     }
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }
