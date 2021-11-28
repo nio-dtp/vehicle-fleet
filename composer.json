@@ -1,0 +1,24 @@
+{
+    "name": "nio-dtp/vehicle-fleet",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "VehicleFleet\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "VehicleFleet\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^8.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    }
+}
