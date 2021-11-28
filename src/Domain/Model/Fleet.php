@@ -55,6 +55,11 @@ final class Fleet
         $vehicle->park($latitude, $longitude, $altitude);
     }
 
+    public function getId(): UuidInterface
+    {
+        return $this->id;
+    }
+
     private function hasVehicle(string $vehicleId): bool
     {
         return null !== $this->getVehicle($vehicleId);

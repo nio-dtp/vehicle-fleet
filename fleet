@@ -1,0 +1,15 @@
+#!/bin/bash -eu
+set -o pipefail
+
+ACTION="$1"
+
+case $ACTION in
+
+  create)
+    docker-compose exec vf-php php bin/console vehicle-fleet:fleet:create $2
+    ;;
+
+  *)
+    echo "Je ne sais pas quoi faire avec '$ACTION'"
+    ;;
+esac
