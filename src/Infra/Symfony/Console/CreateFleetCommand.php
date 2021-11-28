@@ -15,7 +15,7 @@ use VehicleFleet\Domain\Exception\FleetAlreadyCreated;
 
 final class CreateFleetCommand extends Command
 {
-    public function __construct(private CreateFleetHandler $createFleetHandler)
+    public function __construct(private CreateFleetHandler $registerVehicleHandler)
     {
         parent::__construct('vehicle-fleet:fleet:create');
     }
@@ -32,7 +32,7 @@ final class CreateFleetCommand extends Command
     {
         $fleetId = Uuid::uuid4();
         try {
-            $this->createFleetHandler->handle(
+            $this->registerVehicleHandler->handle(
                 new CreateFleet($fleetId, (int) $input->getArgument('userId'))
             );
         } catch (FleetAlreadyCreated $exception) {

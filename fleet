@@ -9,6 +9,10 @@ case $ACTION in
     docker-compose exec vf-php php bin/console vehicle-fleet:fleet:create $2
     ;;
 
+  register-vehicle)
+    docker-compose exec vf-php php bin/console vehicle-fleet:vehicle:register $2 $3
+    ;;
+
   *)
     echo "Je ne sais pas quoi faire avec '$ACTION'"
     ;;

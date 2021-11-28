@@ -30,7 +30,15 @@ final class FleetRepository implements FleetRepositoryInterface
 
     public function getById(string $id): Fleet
     {
-        // TODO: Implement getById() method.
+        $dqlQuery = $this->entityManager->createQuery('SELECT fleet FROM VehicleFleet:Fleet fleet WHERE fleet.id = :fleetId');
+        $dqlQuery->setParameter('fleetId', $id);
+        /** @var Fleet|null $fleet */
+        $fleet = $dqlQuery->getOneOrNullResult();
+        if (null === $fleet) {
+            throw new FleetNotFound(sprintf('La flotte n‘a pas été trouvée (id:%s)', $id));
+        }
+
+        return $fleet;
     }
 
     public function save(Fleet $fleet): void
