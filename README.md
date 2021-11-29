@@ -14,7 +14,8 @@ Une fois démarré, les commandes à utiliser sont celles requises pour le test
 ### Revue de code
 
 Les commits sont atomiques et peuvent être lus dans l'ordre de réalisation demandé.
-Je n'ai pas eu le temps d'écrire des tests, j'ai préféré me concentrer sur la prise en compte de la couche métier,
+Je n'ai pas eu le temps d'écrire des tests ([PR en cours](https://github.com/nio-dtp/vehicle-fleet/pull/1)): l'idée est d'utiliser les features pour tester les commandes.
+J'ai préféré me concentrer sur la prise en compte de la couche métier,
 l'implémentation technique et la lisibilité du code.
 
 ## [Algo] Fizzbuzz [instructions](https://github.com/inextensodigital/developers/blob/master/Algo/fizzbuzz.md)
