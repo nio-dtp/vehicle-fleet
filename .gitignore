@@ -10,3 +10,7 @@
 ###< symfony/framework-bundle ###
 
 .php-cs-fixer.cache
+
+###> friends-of-behat/symfony-extension ###
+/behat.yml
+###< friends-of-behat/symfony-extension ###

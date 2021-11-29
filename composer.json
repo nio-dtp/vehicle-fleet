@@ -60,5 +60,9 @@
             "allow-contrib": false,
             "require": "5.3.*"
         }
+    },
+    "require-dev": {
+        "behat/behat": "^3.10",
+        "friends-of-behat/symfony-extension": "^2.0"
     }
 }
