@@ -1,0 +1,11 @@
+default:
+    suites:
+        default:
+            contexts:
+                - VehicleFleet\Tests\Behat\DemoContext
+
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                class: VehicleFleet\Kernel
+                path: src/Kernel.php

@@ -6,13 +6,13 @@ services:
         command: --default-authentication-plugin=mysql_native_password
         environment:
             MYSQL_ROOT_PASSWORD: secret
-            MYSQL_DATABASE: vf
+            MYSQL_DATABASE: 'vf_${APP_ENV}'
             MYSQL_USER: user
             MYSQL_PASSWORD: password
         ports:
             - '4306:3306'
         volumes:
-            - ./var/mysql:/var/lib/mysql
+            - './var/mysql_${APP_ENV}:/var/lib/mysql'
     vf-php:
         container_name: vf-php
         build:
